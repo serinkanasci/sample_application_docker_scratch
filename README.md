@@ -1,13 +1,13 @@
-Vous avez fait votre première connection à Travis et SonarCloud, bien joué !
+Vous avez fait votre première connexion à Travis et SonarCloud, bien joué !
 
-Nouvelle étape, vous avez différents services qui fonctionnent (httpd, simple-api, database).
+Nouvelle étape, vous avez différents services qui fonctionnent (httpd, simple-api, database, cf dossiers).
 Essayer de les lancer sur votre machine via le `docker-compose.yml` présent.
 Tout doit fonctionner.
 
 L'idée va être de construire chaque image, de l'envoyer sur Docker Hub 
-puis de déployer les changements sur le serveur distance.
+puis de déployer les changements sur le serveur distant.
 
-Pour commencer ajouter les fichiers à votre dépôt Git et faîte une nouvelle CI
+Pour commencer, vous devez ajouter les fichiers à votre dépôt Git et faire une nouvelle CI
 qui va :
 
 1. Build chaque image et la push sur DockerHub (une étape par service)
