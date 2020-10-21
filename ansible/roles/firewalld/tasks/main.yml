@@ -1,0 +1,21 @@
+- name: Close ports from 0 to 21
+  firewalld:
+    port: 0-21/tcp
+    permanent: yes
+    immediate: yes
+    state: disabled
+
+
+- name: Close ports from 23 to 65355
+  firewalld:
+    port: 23-65355/tcp
+    permanent: yes
+    immediate: yes
+    state: disabled
+
+- name: Open port 80
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled

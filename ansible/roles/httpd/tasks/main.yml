@@ -1,0 +1,8 @@
+- name: Launch httpd server
+  docker_container:
+    name: my_apache
+    image: "{{ my_docker_repo }}/my_httpd_conf"
+    networks:
+      - name: "my_network"
+    ports:
+      - 80:80

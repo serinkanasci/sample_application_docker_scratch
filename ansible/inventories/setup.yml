@@ -1,0 +1,13 @@
+all:
+    vars:
+      ansible_user: centos
+      ansible_ssh_private_key_file: ~/.ssh
+      my_db_user: user
+      my_db_password: password # should be encrypted with a vault
+      my_db_name: db
+      my_db_hostname: my_db
+      my_application_name: my_application
+      my_docker_repo: mydockerhub
+    children:
+      prod:
+        hosts: 149.202.166.119

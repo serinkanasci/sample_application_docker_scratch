@@ -1,0 +1,26 @@
+- name: Launch db changelog job
+  docker_container:
+    name: my_db_changelog
+    image: "{{ my_docker_repo }}/application-students-test-db-changelog-job"
+    pull: yes # When using latest
+    networks:
+      - name: "my_network"
+    env:
+      SPRING_DATASOURCE_USERNAME: "{{ my_db_user }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ my_db_password }}"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ my_db_hostname }}:5432/{{ my_db_name }}"
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.postgresql.Driver"
+
+
+- name: Launch application
+  docker_container:
+    name: "{{ my_application_name }}"
+    image: "{{ my_docker_repo }}/application-students-test-http-api-server"
+    pull: yes # When using latest
+    recreate: yes
+    networks:
+      - name: "my_network"
+    env:
+      SPRING_DATASOURCE_USERNAME: "{{ my_db_user }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ my_db_password }}"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://{{ my_db_hostname }}:5432/{{ my_db_name }}"
