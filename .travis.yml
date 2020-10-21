@@ -29,14 +29,6 @@ jobs:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.1
         - docker push $DOCKERHUB_USER/server_base
-    - stage: sonar_scanner
-      addons:
-        sonarcloud:
-          organization: "serinkanasci" # the key of the org you chose at step #3
-          token: $SONAR_KEY
-      script:
-        # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-        - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=serinkanasci_sample_application_docker_scratch
     - stage: deploy
       if: branch = master
       addons:
