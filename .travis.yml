@@ -7,21 +7,21 @@ jobs:
   include:
     - stage: publish_database
       script:
-        - docker build -t $DOCKERHUB_USER/database_base ./Database
+        - docker build -t $DOCKERHUB_USER/database_base ./database
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/database_base $DOCKERHUB_USER/database_base:1.1
         - docker push $DOCKERHUB_USER/database_base
     - stage: publish_backend
       script:
-        - docker build -t $DOCKERHUB_USER/backend_base ./Backend
+        - docker build -t $DOCKERHUB_USER/backend_base ./simple-api
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/backend_base $DOCKERHUB_USER/backend_base:1.1
         - docker push $DOCKERHUB_USER/backend_base
     - stage: publish_server
       script:
-        - docker build -t $DOCKERHUB_USER/server_base ./Server
+        - docker build -t $DOCKERHUB_USER/server_base ./httpd
       after_success:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.1
