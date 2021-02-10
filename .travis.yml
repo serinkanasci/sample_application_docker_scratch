@@ -28,7 +28,7 @@ jobs:
         - docker push $DOCKERHUB_USER/server_base
     - stage: deploy
       addons:
-        ssh_known_hosts: centos@serinkan-asci.takima.io
+        ssh_known_hosts: serinkan-asci.takima.io
       install:
         - sudo apt update
         - sudo apt install software-properties-common
