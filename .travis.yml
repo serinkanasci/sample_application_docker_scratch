@@ -26,17 +26,17 @@ jobs:
         - echo $DOCKERHUB_PWD | docker login --username $DOCKERHUB_USER --password-stdin
         - docker tag $DOCKERHUB_USER/server_base $DOCKERHUB_USER/server_base:1.1
         - docker push $DOCKERHUB_USER/server_base
-    #- stage: deploy
-      #addons:
-        #ssh_known_hosts: serinkan-asci.takima.io
-      #install:
-        #- sudo apt update
-        #- sudo apt install software-properties-common
-        #- sudo apt-add-repository --yes --update ppa:ansible/ansible
-        #- sudo apt install ansible
-      #script:
-        #- openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv -in id_rsa.enc -out /tmp/deploy_rsa -d
-        #- eval "$(ssh-agent -s)"
-        #- chmod 600 /tmp/deploy_rsa
-        #- ssh-add /tmp/deploy_rsa
-        #- ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml
+    - stage: deploy
+      addons:
+        ssh_known_hosts: centos@serinkan-asci.takima.io
+      install:
+        - sudo apt update
+        - sudo apt install software-properties-common
+        - sudo apt-add-repository --yes --update ppa:ansible/ansible
+        - sudo apt install ansible
+      script:
+        - openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv -in id_rsa.enc -out /tmp/deploy_rsa -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/deploy_rsa
+        - ssh-add /tmp/deploy_rsa
+        - ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml
