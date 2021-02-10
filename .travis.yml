@@ -35,7 +35,7 @@ jobs:
         - sudo apt-add-repository --yes --update ppa:ansible/ansible
         - sudo apt install ansible
       script:
-        - openssl aes-256-cbc -K $encrypted_ec0015db4ac4_key -iv $encrypted_ec0015db4ac4_iv -in id_rsa.enc -out /tmp/deploy_rsa -d
+        - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in id_rsa.enc -out id_rsa -d
         - eval "$(ssh-agent -s)"
         - chmod 600 /tmp/deploy_rsa
         - ssh-add /tmp/deploy_rsa
